@@ -1,0 +1,202 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://images.stockcake.com/public/6/2/b/62b2fddf-3721-4bb9-9a0b-e3a11725ac45_large/elegant-navy-gradient-stockcake.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Fade-in for page */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  opacity: 0;
+  animation: fadePageIn 1.2s ease forwards;
+}
+
+@keyframes fadePageIn {
+  from { opacity: 0; transform: scale(0.99); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.wrapper {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+header p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  opacity: 0;
+  animation: fadeUp 1.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* Box links */
+.box-link {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+  transition: all 0.45s ease;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+/* Animate each box in staggered order */
+.box-link:nth-child(1) { animation: fadeUp 1s ease forwards 0.8s; }
+.box-link:nth-child(2) { animation: fadeUp 1s ease forwards 1s; }
+.box-link:nth-child(3) { animation: fadeUp 1s ease forwards 1.2s; }
+/* You can continue pattern if you want for more items */
+
+.box-link:hover {
+  transform: translateY(-8px) scale(1.03);
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* Soft glowing border on hover */
+.box-link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+}
+
+.box-link:hover::before {
+  border: 2px solid rgba(173, 216, 255, 0.7);
+  box-shadow: 0 0 15px rgba(173, 216, 255, 0.6);
+}
+
+.box-link img {
+  filter: blur(8px) brightness(0.8);
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+  border-radius: 12px;
+}
+
+.box-link img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.4s ease;
+}
+
+.box-link:hover img {
+  transform: scale(1.05);
+}
+
+.box-link h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.box-link p {
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+/* Music Control */
+.music-control {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+
+#music-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
+  box-shadow:
+    0 0 15px rgba(255,255,255,0.15),
+    inset 0 0 8px rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: all 0.35s ease;
+  padding: 0; /* make sure there’s no default padding */
+  line-height: 1; /* prevent vertical misalignment */
+}
+
+#music-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+
+/* Active (when music is playing) */
+#music-btn.playing {
+  color: #aee0ff;
+  box-shadow: 0 0 20px rgba(173, 216, 255, 0.8);
+}
+
+
+/* Page transition */
+body.fade-out {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Footer fade-in */
+footer {
+  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeUp 1.5s ease forwards;
+  animation-delay: 1.4s;
+}

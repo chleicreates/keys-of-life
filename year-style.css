@@ -1,0 +1,362 @@
+/* year-style.css */
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #0a2342, #102b5a);
+  color: #e0e7ff;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Header */
+header {
+  text-align: center;
+  background: rgba(255, 215, 0, 0.05);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.25);
+  padding: 35px 15px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+header h1 {
+  color: #ffdf4f;
+  text-shadow: 0 0 10px rgba(255,215,0,0.4);
+  font-size: 2rem;
+  margin: 0;
+}
+header p {
+  color: #b0c4ff;
+  margin-top: 8px;
+}
+
+header h1 a {
+  color: #ffdf4f;
+  text-decoration: none;
+}
+header h1 a:hover {
+  color: #fff8b0;
+  text-shadow: 0 0 12px rgba(255,215,0,0.6);
+}
+
+/* Wrapper */
+.wrapper {
+  flex: 1;
+  max-width: 850px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  padding: 30px;
+  animation: floatUp 1.2s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+@keyframes floatUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Images */
+.wrapper img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 15px 0;
+  box-shadow: 0 6px 15px rgba(255,215,0,0.15);
+}
+
+/* Paragraphs */
+.wrapper p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #d9e2ff;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeUp 1s ease forwards;
+}
+.wrapper p:nth-of-type(1) { animation-delay: 0.2s; }
+.wrapper p:nth-of-type(2) { animation-delay: 0.4s; }
+.wrapper p:nth-of-type(3) { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.nav-button, button {
+  display: inline-block;
+  background-color: rgba(255,215,0,0.15);
+  color: #ffdf4f;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255,215,0,0.3);
+  transition: all 0.3s ease;
+  margin: 20px 10px 0;
+  cursor: pointer;
+}
+.nav-button:hover, button:hover {
+  background-color: rgba(255,215,0,0.3);
+  transform: translateY(-3px);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.nav-button.left {
+  align-self: flex-start;
+}
+
+.nav-button.right {
+  align-self: flex-end;
+}
+
+/* --- Music Control --- */
+.music-control {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+
+#music-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), rgba(255,255,255,0.05));
+  box-shadow:
+    0 0 15px rgba(255,255,255,0.15),
+    inset 0 0 8px rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: all 0.35s ease;
+  padding: 0; /* make sure there’s no default padding */
+  line-height: 1; /* prevent vertical misalignment */
+}
+
+#music-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+
+/* Active (when music is playing) */
+#music-btn.playing {
+  color: #aee0ff;
+  box-shadow: 0 0 20px rgba(173, 216, 255, 0.8);
+}
+
+
+/* Surprise pop-up styles */
+.surprise-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 30, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+}
+
+.surprise-overlay.show {
+  opacity: 1;
+}
+
+.surprise-overlay.fade-out {
+  opacity: 0;
+}
+
+.surprise-card {
+  background: linear-gradient(145deg, #d7e9ff, #bcd0ff);
+  color: #102a43;
+  border-radius: 14px;
+  padding: 25px 30px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transform: scale(0.9);
+  animation: popIn 0.4s ease forwards;
+  max-width: 300px;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.surprise-card p {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.surprise-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeInImage 0.8s ease forwards;
+}
+
+@keyframes fadeInImage {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 🔹 Polaroid photo style */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 25px;
+  border-radius: 6px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transform: rotate(-2deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.polaroid img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+.polaroid .caption {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.1rem;
+  color: #1e3a5f;
+}
+
+/* 💫 Handwritten glowing fade-in effect */
+.caption {
+  opacity: 0;
+  animation: writeGlow 2.5s ease forwards;
+  text-shadow: 0 0 4px rgba(255, 230, 150, 0.6),
+               0 0 8px rgba(255, 255, 200, 0.4);
+}
+
+/* Keyframes for glow + fade-in */
+@keyframes writeGlow {
+  0% {
+    opacity: 0;
+    letter-spacing: 4px;
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 0.6;
+    letter-spacing: 2px;
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: normal;
+    filter: blur(0);
+  }
+}
+
+
+/* Optional slight yellow tint to evoke nostalgia */
+.polaroid {
+  background: linear-gradient(180deg, #fff9e6 0%, #ffffff 100%);
+}
+
+/* ✨ Floating Polaroid animation */
+@keyframes floatPolaroid {
+  0% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+}
+
+.polaroid {
+  animation: floatPolaroid 5s ease-in-out infinite;
+}
+
+/* 💙 Soft blue glow behind the Polaroid */
+.polaroid {
+  position: relative;
+  z-index: 1;
+}
+
+.polaroid::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle at center, rgba(99, 178, 255, 0.35), transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  border-radius: 12px;
+}
+
+.polaroid:hover::before {
+  opacity: 1;
+}
+
+
+/* Pause the float when hovered (optional, feels interactive) */
+.polaroid:hover {
+  animation-play-state: paused;
+  transform: rotate(0deg) scale(1.03);
+}
+
+
+.close-btn {
+  background: #517acc;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #365bb5;
+}
+
+
+/* Footer */
+footer {
+  background-color: rgba(255,215,0,0.08);
+  color: #c5d4ff;
+  text-align: center;
+  padding: 18px 10px;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,215,0,0.25);
+}
